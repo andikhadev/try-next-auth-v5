@@ -116,7 +116,7 @@ const RegisterForm = () => {
           <FormError message={error} />
           <FormSuccess message={success} />
           <Button type='submit' className='w-full' disabled={isPending}>
-            Create an account
+            {isPending ? 'Creating account...' : 'Create account'}
           </Button>
         </form>
       </Form>
