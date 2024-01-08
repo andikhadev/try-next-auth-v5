@@ -25,8 +25,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
-        case 'CredentialsSignin':
-          return { error: 'Invalid Credentials' }
+        case 'AuthorizedCallbackError':
+          return { error: 'This account is not permitted to login' }
         default:
           return { error: error.cause?.err?.message ?? error.message }
       }

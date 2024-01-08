@@ -6,7 +6,7 @@ export const publicRoutes = ['/']
 /**
  * The routes that from authentication
  */
-export const authRoutes = ['/auth/login', '/auth/register']
+export const authRoutes = ['/auth/login', '/auth/register', '/auth/error']
 
 /**
  * The prefix for all auth API routes
