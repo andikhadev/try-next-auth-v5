@@ -1,7 +1,7 @@
 /**
  * The routes that are can be accessed without authentication
  */
-export const publicRoutes = ['/']
+export const publicRoutes = ['/', '/auth/new-verification']
 
 /**
  * The routes that from authentication

@@ -3,7 +3,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 
 import authConfig from './auth.config'
 import { db } from './lib/db'
-import { getUserById } from './data/user'
+import { getUserById, updateUserById } from './data/user'
 import { ExtendedUser } from './next-auth'
 
 export const {
@@ -18,20 +18,27 @@ export const {
   },
   events: {
     async linkAccount({ account, user }) {
-      await db.user.update({
-        where: { id: user.id },
-        data: { emailVerified: new Date() },
+      await updateUserById(user.id, {
+        emailVerified: new Date(),
       })
       console.log('linkAccount', { account, user })
     },
   },
   callbacks: {
-    async signIn({ user }) {
-      // const existingUser = await getUserById(user.id)
+    async signIn({ user, account }) {
+      // Allow OAuth without email verification
+      if (account?.provider !== 'credentials') {
+        return true
+      }
 
-      // if (!existingUser || !existingUser.emailVerified) {
-      //   return false
-      // }
+      const existingUser = await getUserById(user.id)
+
+      // Prevent sign in without email verification
+      if (!existingUser?.emailVerified) {
+        return false
+      }
+
+      // TODO: Add 2FA check
 
       return true
     },
