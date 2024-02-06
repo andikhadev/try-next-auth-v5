@@ -4,7 +4,17 @@ export const LoginSchema = z.object({
   email: z.string().min(1, 'Please enter your email').email({
     message: 'Please enter a valid email',
   }),
-  password: z.string().min(1, 'Please enter your password'),
+  password: z.string().min(6, 'Minimum of 6 characters required'),
+})
+
+export const ResetSchema = z.object({
+  email: z.string().min(1, 'Please enter your email').email({
+    message: 'Please enter a valid email',
+  }),
+})
+
+export const NewPasswordSchema = z.object({
+  password: z.string().min(6, 'Minimum of 6 characters required'),
 })
 
 export const RegisterSchema = z.object({

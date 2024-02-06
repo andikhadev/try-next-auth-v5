@@ -6,7 +6,13 @@ export const publicRoutes = ['/', '/auth/new-verification']
 /**
  * The routes that from authentication
  */
-export const authRoutes = ['/auth/login', '/auth/register', '/auth/error']
+export const authRoutes = [
+  '/auth/login',
+  '/auth/register',
+  '/auth/error',
+  '/auth/reset',
+  '/auth/new-password',
+]
 
 /**
  * The prefix for all auth API routes
